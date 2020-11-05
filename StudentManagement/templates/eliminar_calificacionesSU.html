@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Calificaciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/stylesTabla.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+  <nav>
+            <ul>
+              <!--<li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Eliminar Calificaciones</h1>
+
+    <div>
+      <form method="post">
+        {% csrf_token %}
+        <label for="lname">¿Seguro de eliminar la calificación {{calificacione.calif}} para la matricula {{calificacione.matricula}}?</label>
+        <br>
+       <!-- <label for="fname">Matricula</label>
+        <div class="m1"> 
+          <input type="text"  placeholder="Search.." name="search">
+          <button class="sb" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+      
+        <label for="lname">Clave de la materia</label>
+        <input required type="text" id="lname" name="lastname" >
+
+        <label for="lname">Calificación</label>
+       
+
+       <input type="number" step="any" min="0" max="100" value="22.33">-->
+       
+        <input required type="submit" value="Eliminar">
+      </form>
+    </div>
+
+    
+
+ 
+</body>
+</html>

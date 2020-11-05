@@ -1,0 +1,271 @@
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+ img{
+   width: 200px;
+ }
+ li{
+   float: left;
+   list-style: none;
+   padding: 10px;
+   font-size: 30px;
+ }
+ nav{
+  float: right;
+  margin-right: 20px;
+ }
+ a{
+  text-decoration: none;
+  color: black;
+  margin: 20px;
+  font-family: lato;
+ }
+ a:hover{
+    color: white;
+    /*background-color: teal;*/
+ }
+
+ header{
+   background-color: #F05F45;
+ }
+body{
+  margin: 0;
+}
+h1{
+  text-align: center;
+  font-size: 50px;
+  font-family: lato ;
+  color: #F05F45;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+}
+
+input[type=number], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+  
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+  
+}
+
+.contraseña {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+}
+
+.correo {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+}
+
+.calif {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: lato;
+  font-size: 15px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: lato;
+  font-size: 20px;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  width: 40%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+label {
+
+  font-size: 20px;
+  font-family: lato;  
+}
+.m1{
+
+ margin: 0;
+ padding: 0;
+ align-items: initial;
+ display: flex;
+ width: 100%;
+}
+.sb{
+  margin: 10px;
+  font-size: 30px;
+  width: 20%;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.sb:hover{
+ color:  #F05F45;
+ border-color: #F05F45;  
+}
+
+.tab{
+  margin: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+td{
+  font-family: lato;
+  font-size: 20px;
+}
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-family: lato;
+  font-size: 20px;
+}
+
+.wrapper{
+  /*position: absolute;
+  /*top: 50%;
+  left: 50%;
+  /transform: translate(-50%,-50%);*/
+  margin: auto;
+  display: flex;
+  box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+  margin-bottom: 30px;
+  width: 1200px;
+  height: 495px;
+}
+
+.left{
+  width: 35%;
+  height: 455px;
+  background: white;
+  padding: 30px 25px;
+  margin: auto;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+  color: black;
+  font-size: 25px;
+  font-family: lato;
+  margin-right: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.right{
+  width: 65%;
+  background: #fff;
+  padding: 30px 25px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+}
+.info{
+  width: 100%;
+  background-color: white;
+  padding: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.datos
+{
+  margin: auto;
+}
+.datillos
+{
+  background-color: white;
+
+}
+.cabeza{
+  background-color: white;
+  color: #45a049;
+  font-size: 25px;
+}
+.fotodeperfil{
+  display: block;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+}
+.info2{
+  width: 100%;
+  background-color: white;
+  padding: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+	<meta charset="utf-8">
+	<title>Menú SU</title>
+	<link rel="stylesheet" href="{% static 'css/stylesmaestro.css' %}"/>
+</head>
+<body>
+	<header>
+        <a class="a1" href="Menu">
+            <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+        </a>
+        <nav>
+            <ul>
+                <li><a class="a2" href="Soporte">Soporte</a></li>
+				<li><a class="a2" href="Contacto">Contacto</a></li>
+				<li><a href="VerPerfil"><img class="icon2" src="{% static 'imagenes/usuario.png'%}" ></a></li>
+				<li><a href="Logout"><img class="icon2" src="{% static 'imagenes/finalizar.png'%}" ></a></li>
+            </ul>       
+        </nav>
+    </header>
+
+	<p>
+		<br><br>Menú
+	</p>
+	<div class="barra">
+
+		<a     href="Alumno">
+		<div class="contenedor" id="uno">
+			
+			<img class="icon" src="{% static 'imagenes/iconoMaestro.png'%}">
+			<p class="texto">Alumnos</p>
+		</a>
+
+
+		</div>
+		<a href="Maestro">
+			<div class="contenedor" id="cinco">
+				<img class="icon" src="{% static 'imagenes/lente.png'%}">
+				<p class="texto">Docentes</p>
+			</div>
+
+
+
+
+		</a>
+
+
+	<a    href="Calificaciones">
+		<div class="contenedor" id="dos">
+			<img class="icon" src="{% static 'imagenes/iconoPadre.png'%}">
+			<p class="texto">Calificaciones</p>
+		</div>
+		</a>
+
+		<a    href="Grupos">
+		<div class="contenedor" id="tres">
+			<img class="icon" src="{% static 'imagenes/grupo.png'%}">
+			<p class="texto">Grupos</p>
+		</div>
+		</a>
+
+		<a    href="Materias">
+		<div class="contenedor" id="cuatro">
+			<img class="icon" src="{% static 'imagenes/materias.png'%}">
+			<p class="texto">Materias</p>
+		</div>
+		</a>
+	
+
+		
+
+
+		
+	</div >
+		
+	
+</body>
+</html>

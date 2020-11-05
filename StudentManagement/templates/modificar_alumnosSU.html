@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Alumno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript">
+      function Solo_Texto(e) {
+        var code;
+        if (!e) var e = window.event;
+        if (e.keyCode) code = e.keyCode;
+        else if (e.which) code = e.which;
+        var character = String.fromCharCode(code);
+        var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+        if (AllowRegex.test(character)) return true;     
+      return false; 
+      }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+  <nav>
+            <ul>
+              <!--<li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Modificar alumno</h1>
+
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        <!--{{ form }}-->
+        <label for="fname" >Matricula</label>
+        <input disabled type="number" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="matricula" name="matricula" value= "{{alumno.matricula}}" required>
+
+        <label for="password">Contraseña</label>
+        <input required type="password" id="fname" name="password" class="contraseña" value="{{ alumno.password }}" required>
+    
+        <label for="nombre">Nombre</label>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="20" id="nombre" name="nombre" value="{{ alumno.nombre }}" required>
+
+        <label for="apellidoP">Apellido paterno</label>
+        <input required type="text"  onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" maxlength="15" id="apellidoP" name="apellidoP" value="{{ alumno.apellidoP }}" required>
+
+        <label for="apellidoM">Apellido materno</label>
+        <input required type="text" onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" maxlength="15" id="apellidoM" name="apellidoM" value="{{ alumno.apellidoM }}" required>
+    
+        <label for="grado">Grado</label>
+          <input required type="number" maxlength="1" id="grado" name="grado" value="{{ alumno.grado }}" required>
+        
+        <label for="grupo">Grupo</label>
+        <input required type="text" onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" maxlength="1" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="grupo" name="grupo" value="{{ alumno.grupo }}" required>
+        
+        <label for="nombreP">Nombre del padre de familia</label>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="45" id="nombreP" name="nombreP" value="{{ alumno.nombreP }}" required>
+      
+        <input required type="submit" value="Submit">
+      </form>
+    </div> 
+</body>
+</html>

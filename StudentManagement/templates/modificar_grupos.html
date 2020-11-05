@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Grupo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript">
+      function Solo_Texto(e) {
+        var code;
+        if (!e) var e = window.event;
+        if (e.keyCode) code = e.keyCode;
+        else if (e.which) code = e.which;
+        var character = String.fromCharCode(code);
+        var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+        if (AllowRegex.test(character)) return true;     
+      return false; 
+      }
+    </script>
+
+  </head>
+
+<body>
+    <header>
+            <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+        <nav>
+            <ul>
+              <!--<li><a href="MenuM">Inicio</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Modificar Grupo</h1>
+
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        <label for="fname">Clave del Grupo</label>
+        <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveGrupo" name="claveGrupo" value= "{{grupo.claveGrupo}}" required>
+    
+        <!--<label for="lname">Clave de la Materia</label>
+        <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveMateria" name="claveMateria" value= "{{grupo.claveMateria}}" required>
+
+        <label for="lname">Clave del Docente</label>
+        <input required type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveDocente" name="claveDocente" value= "{{grupo.claveDocente}}" required>
+        -->
+        <label for="country">Grado</label>
+        <input required type="number" maxlength="1" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="grado" name="grado" value= "{{grupo.grado}}" required>
+        
+        <label for="lname">Grupo</label>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" id="grupo" maxlength="1" name="grupo" value= "{{grupo.grupo}}" required>
+        <input required type="submit" value="Submit">
+      </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+	<meta charset="utf-8">
+	<title>Menú Calificaciones</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estyleSubMenuSU.css' %}">
+</head>
+<body>
+	<header>
+        <a class="a1" href="Menu">
+            <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+        </a>
+        <nav>
+            <ul>
+                <li><a  class="a2" href="Menu">Inicio</a></li>
+                <li><a class="a2" href="Soporte">Soporte</a></li>
+                <li><a class="a2" href="Contacto">Contacto</a></li>
+            </ul>       
+        </nav>
+    </header>
+
+	<p>
+		<br><br>Calificaciones
+	</p>
+	<div class="barra">
+
+		
+		<div class="contenedor" id="uno">
+            <a href="AgregarCalificaciones">
+            
+                
+                <img class="icon" src="{% static 'imagenes/registrar.png'%}">
+                <p class="texto">Registrar</p>
+            </a>
+            </div>
+    
+        <a href="ModificarCalificaciones">
+            <div class="contenedor" id="dos">
+                <img class="icon" src="{% static 'imagenes/modificar.png'%}">
+                <p class="texto">Modificar</p>
+            </div>
+            </a>
+    
+            <a href="EliminarCalificaciones">
+            <div class="contenedor" id="tres">
+                <img class="icon" src="{% static 'imagenes/eliminar.png'%}">
+                <p class="texto">Eliminar</p>
+            </div>
+            </a>
+    
+    
+    
+            <a href="ConsultarCalificaciones">
+            <div class="contenedor" id="cuatro">
+                <img class="icon" src="{% static 'imagenes/consultar.png'%}">
+                <p class="texto">Consultar</p>
+            
+            </a>
+    
+    
+            
+    
+            </div>
+		
+
+
+		
+	</div >
+		
+	
+</body>
+</html>

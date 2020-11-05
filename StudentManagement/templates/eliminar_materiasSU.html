@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Materias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/stylesTabla.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+      <nav>
+            <ul>
+                <!--<li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Eliminar Materias</h1>
+
+    <div>
+        <form method="post">
+          {% csrf_token %}
+          <label for="lname">¿Seguro de eliminar {{materia.nombreMateria}}?</label>
+          <br>                
+        <input required type="submit" value="Eliminar">
+      </form>
+    </div>
+
+    
+
+ 
+</body>
+</html>

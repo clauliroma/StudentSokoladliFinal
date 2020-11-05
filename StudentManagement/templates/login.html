@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/log.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"> 
+       
+</head>
+
+<body>
+  <header>
+      <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+      <nav>
+          <ul>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
+          </ul>       
+      </nav>
+  </header>
+
+    <form class="login" method="POST"> 
+      
+        <div class="contenedorlog"> 
+          <h1 class="monito"><i class="far fa-user"></i></h1>
+            <label class="etiquetaslog"><b>Usuario</b></label> 
+            <input class="usua" type="text" placeholder="Ingresar usuario" name="username" required> 
+            <label class="etiquetaslog"><b>Contraseña</b></label> 
+            <input class="clave" type="password" placeholder="Ingresar contraseña" name="password" required> 
+            {% csrf_token %}
+            <div class="join-button" style="font-size:25px;" text-align= "center;">
+            
+            <!--<button type="button" class="btlogenviar" type="submit"><a href="{% url 'Menu' %}">Login</a></button>-->
+            <button class="btlogenviar" type="submit">Login</button>
+            </div>
+            <label class="recuerda">Recordar
+              <input type="checkbox" checked="checked">
+              <span class="checkmark"></span>
+            </label>
+    </form>  
+</body>
+</html>

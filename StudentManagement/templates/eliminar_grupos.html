@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Grupo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+  <nav>
+            <ul>
+              <!--<li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Eliminar Grupo</h1>
+
+    <div>
+      <form method="post">
+        {% csrf_token %}
+        <label for="lname">¿Seguro de eliminar a {{grupo.grado}} {{grupo.grupo}}?</label>
+        <br>
+        <!--<label for="fname">Clave del Grupo</label>
+        <div class="m1"> 
+            <input type="text"  placeholder="Search.." name="search">
+            <button class="sb" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+    
+        <label for="lname">Clave de la Materia</label>
+        <input required type="text" id="lname" name="lastname" >
+
+        <label for="lname">Clave del Docente</label>
+        <input required type="text" id="lname" name="lastname" >
+
+        <label for="lname">Grupo</label>
+        <input required type="text" id="lname" name="lastname" >
+    
+        <label for="country">Grado</label>
+        <select id="country" name="country" >
+          <option value="primero">1º</option>
+          <option value="segundo">2º</option>
+          <option value="tercero">3º</option>
+          <option value="cuarto">4º</option>
+          <option value="quinto">5º</option>
+          <option value="sexto">6º</option>
+        </select>-->
+        <input required type="submit" value="Submit">
+      </form>
+    </div>
+
+    
+
+ 
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Materias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/lupitas.css' %}"/>
+</head>
+
+<body>
+    <header>
+        <a href="Menu">
+            <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Eliminar Materias</h1>
+
+    {% block buscador %}
+    <form class="tamaño" method="POST">
+  {% csrf_token %}
+  <div class="divbusqueda" class="input-group">
+    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+      <button class="lupa" class="btn btn-primary" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock buscador %}
+
+{% block contenido %}
+    <div class="tab">
+        <table id="customers"> 
+            {% if materia %}
+            <thread>
+                <tr >
+                <th>Clave Materia</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+                </tr>
+            </thread>
+            <tbody>
+                   {% for materia in materia %}
+                       <tr> 
+                        <td>{{materia.claveMateria}}</td>
+                        <td>{{materia.nombreMateria}}</td>
+                        <td>
+                            <a class ="nicocholo" href="{% url 'EliminarMaterias' materia.claveMateria %}">Eliminar</a>
+                         </td>
+                        </tr>
+                   {% endfor %}
+                   {% else %}
+						<h1>No hay registros</h1>
+					{% endif %}
+
+            </tbody>
+        </table>
+    </div>
+    {% endblock contenido %}
+</body>
+</html>

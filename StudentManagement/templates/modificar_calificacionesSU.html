@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Calificaciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+  <nav>
+            <ul>
+              <!--<li><a href="Menu">Inicio</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>-->
+            </ul>       
+        </nav>
+    </header>
+
+    <h1>Modificar Calificaciones</h1>
+
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        <label for="fname">Matricula</label>
+        <input required type="number" maxlength="6" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="matricula" name="matricula" value="{{ calificacione.matricula }}" required>
+      
+        <label for="lname">Clave de la materia</label>
+        <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveMateria" name="claveMateria" value="{{ calificacione.claveMateria }}" required>
+
+        <label for="lname">Calificación</label>
+       <input class="calif" type="number" maxlength="3" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" step="any" min="0" max="100" id="calif" name="calif" value="{{ calificacione.calif }}" required>
+
+       <label for="lname">Estrategia</label><br>
+       <textarea id="textarea" style="text-transform:uppercase" name="estrategia" rows="6" cols="143" >{{ calificacione.estrategia }}</textarea>
+       
+        <input required type="submit" value="Submit">
+      </form>
+    </div>
+
+    
+
+ 
+</body>
+</html>

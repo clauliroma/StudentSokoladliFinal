@@ -1,0 +1,172 @@
+html{
+    box-sizing: border-box;
+    font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+ img{
+   width: 200px;
+ }
+ li{
+   float: left;
+   list-style: none;
+   padding: 10px;
+   font-size: 30px;
+ }
+ nav{
+  float: right;
+  margin-right: 20px;
+ }
+ a{
+  text-decoration: none;
+  color: black;
+  margin: 20px;
+  font-family: lato;
+ }
+ a:hover{
+    color: white;
+    /*background-color: teal;*/
+ }
+
+ header{
+   background-color: #F05F45;
+ }
+body{
+  margin: 0;
+}
+h1{
+  text-align: center;
+  font-size: 50px;
+  font-family: lato ;
+  color: #F05F45;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+ img{
+   width: 200px;
+ }
+ li{
+   float: left;
+   list-style: none;
+   padding: 10px;
+   font-size: 30px;
+ }
+ nav{
+  float: right;
+  margin-right: 20px;
+ }
+ a{
+  text-decoration: none;
+  color: black;
+  margin: 20px;
+  font-family: lato;
+ }
+ a:hover{
+    color: white;
+    /*background-color: teal;*/
+ }
+
+ header{
+   background-color: #F05F45;
+ }
+body{
+  margin: 0;
+}
+
+  
+/*Aqui empieza codigo css para login*/
+
+/*assign full width inputs*/ 
+.monito{
+    font-size: 70px;
+    margin: 0;
+}
+.etiquetaslog{
+    font-family: lato;
+    font-size: 30px;
+    margin-right: 20px
+  }
+.usua{ 
+    width: 100%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    display: inline-block; 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+    font-family: lato;
+    font-size: 20px; 
+  } 
+  .clave { 
+    width: 100%; 
+    padding: 12px 20px; 
+    margin: 8px 0; 
+    display: inline-block; 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+    font-family: lato;
+    font-size: 20px;
+  } 
+
+  .btlogenviar { 
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 14px 20px; 
+    margin: 8px 0; 
+    border: none; 
+    cursor: pointer; 
+    width: 100%; 
+    font-family: lato;
+    font-size: 18px;
+    margin-bottom: 15px;
+  } 
+  .btlogenviar:hover { 
+    opacity: 0.8; 
+  }
+  .btlogcancel { 
+    width: auto; 
+    padding: 10px 18px; 
+    background-color: #f44336; 
+    color: white;
+    font-family: lato;
+    font-size: 18px;
+    border: none;
+  } 
+  .btlogcancel:hover { 
+    opacity: 0.8; 
+  } 
+  .contenedorlog { 
+    padding: 16px; 
+    margin-bottom: 0;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+  } 
+  .cancel{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .psw{
+    font-family: lato;
+    font-size: 18px;
+  }
+  .psw:hover{
+    color: teal;
+  }
+  .recuerda{
+    font-family: lato;
+    font-size: 15px;
+  }
+
+  
+  /* Aqui termina login css*/

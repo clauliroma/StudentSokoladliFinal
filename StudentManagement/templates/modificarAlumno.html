@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Alumno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="{% static 'css/lupitas.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="Menu">
+            <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="Menu">Inicio</a></li>
+                <li><a href="Soporte">Soporte</a></li>
+                <li><a href="Contacto">Contacto</a></li>
+            </ul>       
+        </nav>
+    </header>
+    
+    <h1>Modificar Alumno</h1>
+    {% block buscador %}
+    <form class="tamaño" method="POST">
+  {% csrf_token %}
+  <div class="divbusqueda" class="input-group">
+    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+      <button class="lupa" class="btn btn-primary" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock buscador %}
+
+{% block contenido %}
+    <div class="tab">
+        <table id="customers"> 
+            {% if alumno %}
+            <thread>
+                <tr >
+                <th>Matricula</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Grado</th>
+                <th>Grupo</th>
+                <th>Padre de familia</th>
+                <th>Acciones</th>
+                </tr>
+            </thread>
+            <tbody>
+                   {% for alumno in alumno %}
+                       <tr> 
+                        <td>{{alumno.matricula}}</td>
+                        <td>{{alumno.nombre}}</td>
+                        <td>{{alumno.apellidoP}}</td>
+                        <td>{{alumno.apellidoM}}</td>
+                        <td>{{alumno.grado}}</td>
+                        <td>{{alumno.grupo}}</td>
+                        <td>{{alumno.nombreP}}</td>
+                        <td>
+                            <a class ="nicocholo" href="{% url 'ModificarAlumno' alumno.matricula %}">Modificar</a>
+                         </td>
+                        </tr>
+                   {% endfor %}
+                   {% else %}
+						<h1>No hay registros</h1>
+					{% endif %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock contenido %}
+</body>
+</html>
