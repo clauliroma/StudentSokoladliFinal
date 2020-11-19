@@ -12,14 +12,53 @@ from django.contrib.auth.models import Permission
 from django.contrib.auth.decorators import permission_required
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect 
+from django.http import HttpResponse 
+from django.views.generic import View
 import os
 import subprocess
 from django.db.models import Q
 from subprocess import Popen
+
+from django.conf import settings
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
 #
 from .forms import AlumnosForm, DocentesForm, CalificacionesForm, MateriasForm, GruposForm
-from .models import alumnos, docentes, calificaciones, materias, grupos
+from .models import alumnos, docentes, calificacion, materias, grupos
 # Create your views here.
+import MySQLdb 
+connection = MySQLdb.connect("", "root", "", "studentsokoladli") 
+#Creacion PDF
+def render_pdf_view(request):
+    materia = materias.objects.all()
+    with connection.cursor() as cursor:
+        cursor.callproc("reporteCalif")
+        def dictfetchall(cursor):
+            columns = [col[0] for col in cursor.description]
+            return[
+                dict(zip(columns,row))
+                for row in cursor.fetchall()
+            ]
+        reportcalif=dictfetchall(cursor)
+    for x in reportcalif:
+        for y in materia:
+            if x['claveMateria'] == y.claveMateria:
+                x['claveMateria'] = y.nombreMateria
+    #data = {'context',}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
+    # find the template and render it.
+    template = get_template('pidief.html')
+    html = template.render({'reportcalif': reportcalif})
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 #Login------------------------------------------------------------------------------------
 def inicio(request):
@@ -48,7 +87,6 @@ def Logout(request):
     do_logout(request)
     return redirect('Login')
 
-@login_required
 def invalido(request):
     return render(request,"nologin.html")
 
@@ -114,7 +152,8 @@ def Modificar_Alumno(request):
             Q(apellidoP__icontains = busqueda) |
             Q(apellidoM__icontains = busqueda) |
             Q(grado__icontains = busqueda) |
-            Q(grupo__icontains = busqueda) 
+            Q(grupo__icontains = busqueda) |
+            Q(nombreP__icontains = busqueda) 
         ).distinct()
     return render(request, 'modificarAlumno.html', {'alumno':alumno})
 
@@ -140,6 +179,9 @@ def ModificarAlumno(request,matricula):
         form = AlumnosForm(instance= alumno)
     else:
         form = AlumnosForm(request.POST, instance= alumno)
+        for x in alumnos.objects.all():
+            if x.matricula == matricula:
+                return redirect('repetido')
         if form.is_valid():
             form.save()
         else:
@@ -223,6 +265,9 @@ def ModificarUsuario(request,claveDocente):
         form = DocentesForm(instance= docente)
     else:
         form = DocentesForm(request.POST, instance= docente)
+        for x in docentes.objects.all():
+            if x.claveDocente == claveDocente:
+                return redirect('repetido')
         if form.is_valid():
             form.save()
         else:
@@ -261,8 +306,14 @@ def AgregarMaterias(request):
     if request.method == 'POST':
         formulario = MateriasForm(request.POST or None)
         if formulario.is_valid():
-            formulario.save()
-            return redirect('ConsultarMaterias')
+            data = formulario.cleaned_data 
+            field = data['nombreMateria']
+            for x in materias.objects.all():
+                if field == x.nombreMateria:
+                    return redirect('repetido')
+                else:
+                    formulario.save()
+                    return redirect('ConsultarMaterias')
         else:
             return redirect('repetido')
     return render(request, 'agregar_materiasSU.html',data2)
@@ -298,7 +349,16 @@ def ModificarMaterias(request,claveMateria):
     else:
         form = MateriasForm(request.POST, instance= materia)
         if form.is_valid():
-            form.save()
+            data = form.cleaned_data 
+            field = data['nombreMateria']
+            for x in materias.objects.all():
+                if x.claveMateria == claveMateria:
+                    return redirect('repetido')
+                else:
+                    if field == x.nombreMateria:
+                        return redirect('repetido')
+                    else:
+                        form.save()
         else:
             return redirect('repetido')
         return redirect('ConsultarMaterias')
@@ -330,21 +390,32 @@ def AgregarCalificaciones(request):
     if request.method == 'POST':
         formulario = CalificacionesForm(request.POST or None)
         if formulario.is_valid():
-            formulario.save()
-            return redirect('ConsultarCalificaciones')
+            data = formulario.cleaned_data 
+            field = data['matricula']
+            field2 = data['claveMateria']
+            for x in calificacion.objects.all():
+                if field == x.matricula:
+                    return redirect('repetido')
+                else:
+                    if field2 == x.claveMateria:
+                        return redirect('repetido')
+                    else:
+                        formulario.save()
+                        return redirect('ConsultarCalificaciones')
         else:
-            return redirect('repetido')    
+            return redirect('repetido') 
     return render(request, 'agregar_calificacionesSU.html',data2)
 
 @login_required
 def Modificar_Calificaciones(request):
     busqueda = request.POST.get("buscar")
-    calificacione = calificaciones.objects.all()
+    calificacione = calificacion.objects.all().order_by('matricula')
     if busqueda:
-        calificacione = calificaciones.objects.filter(
-            Q(matricula__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
-            Q(calif__icontains = busqueda) |
+        calificacione = calificacion.objects.filter(
+            #Q(incremento__icontains = busqueda) | 
+            Q(matricula__matricula__icontains = busqueda) | 
+            Q(claveMateria__claveMateria__icontains = busqueda) | 
+            Q(calif__icontains = busqueda)|
             Q(estrategia__icontains = busqueda) 
         ).distinct()
     return render(request,'modificarCalificaciones.html',{'calificacione': calificacione})
@@ -352,33 +423,45 @@ def Modificar_Calificaciones(request):
 @login_required
 def Eliminar_Calificaciones(request):
     busqueda = request.POST.get("buscar")
-    calificacione = calificaciones.objects.all()
+    calificacione = calificacion.objects.all().order_by('matricula')
     if busqueda:
-        calificacione = calificaciones.objects.filter(
-            Q(matricula__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
+        calificacione = calificacion.objects.filter(
+            #Q(incremento__icontains = busqueda) | 
+            Q(matricula__matricula__icontains = busqueda) | 
+            Q(claveMateria__claveMateria__icontains = busqueda) | 
             Q(calif__icontains = busqueda) |
             Q(estrategia__icontains = busqueda) 
         ).distinct()
     return render(request,'eliminarCalificaciones.html',{'calificacione': calificacione})
 
 @login_required
-def ModificarCalificaciones(request,matricula):
-    calificacione = calificaciones.objects.filter(matricula=matricula).first()
+def ModificarCalificaciones(request,incremento):
+    calificacione = calificacion.objects.filter(incremento=incremento).first()
     if request.method == 'GET':
         form = CalificacionesForm(instance= calificacione)
     else:
         form = CalificacionesForm(request.POST, instance= calificacione)
         if form.is_valid():
-            form.save()
+            data = form.cleaned_data 
+            field = data['matricula']
+            field2 = data['claveMateria']
+            for x in calificacion.objects.all():
+                if field == x.matricula:
+                    return redirect('repetido')
+                else:
+                    if field2 == x.claveMateria:
+                        return redirect('repetido')
+                    else:
+                        form.save()
+                        return redirect('ConsultarCalificaciones')
         else:
-            return redirect('repetido')
+            return redirect('repetido') 
         return redirect('ConsultarCalificaciones')
     return render(request, 'modificar_calificacionesSU.html',{'calificacione': calificacione})
 
 @login_required
-def EliminarCalificaciones(request,matricula):
-    calificacione = calificaciones.objects.filter(matricula=matricula).first()
+def EliminarCalificaciones(request,incremento):
+    calificacione = calificacion.objects.filter(incremento=incremento).first()
     if request.method == 'POST':
         calificacione.delete()
         return redirect('ConsultarCalificaciones')
@@ -387,11 +470,12 @@ def EliminarCalificaciones(request,matricula):
 @login_required
 def ConsultarCalificaciones(request):
     busqueda = request.POST.get("buscar")
-    calificacione = calificaciones.objects.all()
+    calificacione = calificacion.objects.all().order_by('matricula')
     if busqueda:
-        calificacione = calificaciones.objects.filter(
-            Q(matricula__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
+        calificacione = calificacion.objects.filter(
+            #Q(incremento__icontains = busqueda) | 
+            Q(matricula__matricula__icontains = busqueda) | 
+            Q(claveMateria__claveMateria__icontains = busqueda) |  
             Q(calif__icontains = busqueda) |
             Q(estrategia__icontains = busqueda) 
         ).distinct()
@@ -405,8 +489,19 @@ def AgregarGrupos(request):
     if request.method == 'POST':
         formulario = GruposForm(request.POST or None)
         if formulario.is_valid():
-            formulario.save()
-            return redirect('ConsultarGrupos')
+            data = formulario.cleaned_data 
+            field = data['claveGrupo']
+            field2 = data['grupo']
+            field3 = data['grado']
+            for x in grupos.objects.all():
+                if field == x.claveGrupo:
+                    return redirect('repetido')
+                else:
+                    if field2 == x.grupo and field3 == x.grado:
+                        return redirect('repetido')
+                    else:
+                        formulario.save()
+                        return redirect('ConsultarGrupos')
         else:
             return redirect('repetido')
     return render(request, 'agregar_grupos.html',data2)
@@ -418,8 +513,6 @@ def Modificar_Grupos(request):
     if busqueda:
         grupo = grupos.objects.filter(
             Q(claveGrupo__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
-            Q(claveDocente__icontains = busqueda) | 
             Q(grupo__icontains = busqueda) |
             Q(grado__icontains = busqueda) 
         ).distinct()
@@ -431,9 +524,7 @@ def Eliminar_Grupos(request):
     grupo = grupos.objects.all()
     if busqueda:
         grupo = grupos.objects.filter(
-            Q(claveGrupo__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
-            Q(claveDocente__icontains = busqueda) | 
+            Q(claveGrupo__icontains = busqueda) |  
             Q(grupo__icontains = busqueda) |
             Q(grado__icontains = busqueda) 
         ).distinct()
@@ -447,7 +538,19 @@ def ModificarGrupos(request,claveGrupo):
     else:
         form = GruposForm(request.POST, instance= grupo)
         if form.is_valid():
-            form.save()
+            data = form.cleaned_data 
+            field = data['claveGrupo']
+            field2 = data['grupo']
+            field3 = data['grado']
+            for x in grupos.objects.all():
+                if field == x.claveGrupo:
+                    return redirect('repetido')
+                else:
+                    if field2 == x.grupo and field3 == x.grado:
+                        return redirect('repetido')
+                    else:
+                        form.save()
+                        return redirect('ConsultarGrupos')
         else:
             return redirect('repetido')
         return redirect('ConsultarGrupos')
@@ -468,8 +571,6 @@ def ConsultarGrupos(request):
     if busqueda:
         grupo = grupos.objects.filter(
             Q(claveGrupo__icontains = busqueda) | 
-            Q(claveMateria__icontains = busqueda) | 
-            Q(claveDocente__icontains = busqueda) | 
             Q(grupo__icontains = busqueda) |
             Q(grado__icontains = busqueda) 
         ).distinct()

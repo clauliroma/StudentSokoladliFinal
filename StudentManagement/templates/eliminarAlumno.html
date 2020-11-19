@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Alumno</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="{% static 'css/lupitas.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -18,26 +16,25 @@
         </a>
         <nav>
             <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+                <li><a href="javascript:history.back()">Regresar</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
     
     <h1>Eliminar alumno</h1>
     {% block buscador %}
-    <form class="tamaño" method="POST">
-  {% csrf_token %}
-  <div class="divbusqueda" class="input-group">
-    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
-      <button class="lupa" class="btn btn-primary" type="submit">
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
-  </div>
-</form>
-{% endblock buscador %}
+      <form class="tamaño" method="POST">
+        {% csrf_token %}
+        <div class="divbusqueda" class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="{{ request.POST.buscar }}">
+            <button class="lupa" class="btn btn-primary" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+        </div>
+      </form>
+    {% endblock buscador %}
 
 {% block contenido %}
     <div class="tab">
@@ -59,12 +56,12 @@
                    {% for alumno in alumno %}
                        <tr> 
                         <td>{{alumno.matricula}}</td>
-                        <td>{{alumno.nombre}}</td>
-                        <td>{{alumno.apellidoP}}</td>
-                        <td>{{alumno.apellidoM}}</td>
+                        <td style="text-transform: capitalize">{{alumno.nombre}}</td>
+                        <td style="text-transform: capitalize">{{alumno.apellidoP}}</td>
+                        <td style="text-transform: capitalize">{{alumno.apellidoM}}</td>
                         <td>{{alumno.grado}}</td>
-                        <td>{{alumno.grupo}}</td>
-                        <td>{{alumno.nombreP}}</td>
+                        <td style="text-transform: uppercase">{{alumno.grupo}}</td>
+                        <td style="text-transform: capitalize">{{alumno.nombreP}}</td>
                         <td>
                             <a class ="nicocholo" href="{% url 'EliminarAlumno' alumno.matricula %}">Eliminar</a>
                          </td>
@@ -73,10 +70,9 @@
                    {% else %}
 						<h1>No hay registros</h1>
 					{% endif %}
-
             </tbody>
         </table>
     </div>
-    {% endblock contenido %}
+{% endblock contenido %}
 </body>
 </html>

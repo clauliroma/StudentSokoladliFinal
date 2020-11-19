@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import alumnos,docentes, calificaciones, materias, grupos
+from .models import alumnos,docentes, calificacion, materias, grupos
 
 class AlumnosForm(forms.ModelForm):
     class Meta:
@@ -15,16 +15,15 @@ class DocentesForm(forms.ModelForm):
 
 class CalificacionesForm(forms.ModelForm):
     class Meta:
-        model = calificaciones
-        fields= ['incremento','matricula','claveMateria','calif','estrategia']
+        model = calificacion
+        fields= ['incremento','matricula','claveMateria','calif','estrategia',]
 
 class MateriasForm(forms.ModelForm):
     class Meta:
         model = materias
-        fields= ['claveMateria','nombreMateria']
+        fields= ['claveMateria','nombreMateria',]
 
 class GruposForm(forms.ModelForm):
     class Meta:
         model = grupos
-        fields= ['claveGrupo','grado','grupo']
-        #fields= ['claveGrupo','claveDocente','claveMateria','grado','grupo']
+        fields= ['claveGrupo','grado','grupo',]

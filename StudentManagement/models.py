@@ -46,6 +46,7 @@ class materias(models.Model):
         db_table = 'materias'
     def __str__(self):
         return self.claveMateria
+        return self.nombreMateria
     objects = models.Manager()
 
 #Grupos
@@ -64,7 +65,7 @@ class grupos(models.Model):
     objects = models.Manager()
 
 #Calificaciones
-class calificaciones(models.Model):
+class calificacion(models.Model):
     incremento = models.AutoField(primary_key=True)
     matricula = models.ForeignKey(alumnos,  db_column='matricula', on_delete = models.CASCADE)  # Field name made lowercase.
     claveMateria = models.ForeignKey(materias,  db_column='claveMateria', on_delete = models.CASCADE)  # Field name made lowercase.
@@ -74,7 +75,7 @@ class calificaciones(models.Model):
     class Meta: 
         managed = False
         db_table = 'calificacion'
-        unique_together = ('matricula', 'claveMateria') 
+        #unique_together = ('matricula', 'claveMateria') 
      
     def __str__(self):
         return self.incremento

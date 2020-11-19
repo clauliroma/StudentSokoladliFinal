@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Materias</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
+    <<!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
@@ -29,9 +30,7 @@
         <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
       <nav>
             <ul>
-                <!--<li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>-->
+              <li><a href="javascript:history.back()">Regresar</a></li>
             </ul>       
         </nav>
     </header>
@@ -45,7 +44,7 @@
         <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveMateria" name="claveMateria" value= "{{materia.claveMateria}}" required>
 
         <label for="fname">Nombre de la materia</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="20" id="nombreMateria" name="nombreMateria" value= "{{materia.nombreMateria}}" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:capitalize"  type="text" maxlength="20" id="nombreMateria" name="nombreMateria" value= "{{materia.nombreMateria}}" required>
       
         <input required type="submit" value="Submit">
       </form>

@@ -5,23 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Alumno</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/stylesmo2.css' %}"/>
 
+    <!--Solo texto-->
     <script type="text/javascript">
       function Solo_Texto(e) {
         var code;
         if (!e) var e = window.event;
         if (e.keyCode) code = e.keyCode;
         else if (e.which) code = e.which;
-        var character = String.fromCharCode(code);
-        var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+          var character = String.fromCharCode(code);
+          var AllowRegex  = /^[\ba-zA-Z\s-]$/;
         if (AllowRegex.test(character)) return true;     
-      return false; 
+        return false; 
       }
     </script>
-
 </head>
 
 <body>
@@ -30,16 +28,14 @@
             <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
         </a>
         <nav>
-            <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+          <ul>
+              <li><a class="a2" href="javascript:history.back()">Regresar</a></li>
+              <li><a class="a2" href="Soporte">Soporte</a></li>
+              <li><a class="a2" href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
-
     <h1>Agregar alumno</h1>
-    
     <div>
       <form method="POST">
         {% csrf_token %}
@@ -50,13 +46,13 @@
         <input required type="password" id="password" name="password" class="contraseña" required>
     
         <label for="lname">Nombre</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="20" id="nombre" name="nombre" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform: capitalize" type="text" maxlength="20" id="nombre" name="nombre" required>
 
         <label for="lname">Apellido paterno</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="15" id="apellidoP" name="apellidoP" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform: capitalize" type="text" maxlength="15" id="apellidoP" name="apellidoP" required>
 
         <label for="lname">Apellido materno</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="15" id="apellidoM" name="apellidoM" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform: capitalize" type="text" maxlength="15" id="apellidoM" name="apellidoM" required>
     
         <label for="grado">Grado</label>
         <select id="grado" name="grado" >
@@ -69,9 +65,9 @@
         </select>
 
         <label for="lname">Grupo</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="1" id="grupo" name="grupo" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform: capitalize" type="text" maxlength="1" id="grupo" name="grupo" required>
         <label for="lname">Nombre del padre de familia</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="45" id="nombreP" name="nombreP" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform: capitalize" type="text" maxlength="45" id="nombreP" name="nombreP" required>
         <input required type="submit" value="Submit">
       </form>
     </div>

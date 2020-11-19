@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Docente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
+    <!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    -->
     <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -31,9 +32,7 @@
         <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
       <nav>
             <ul>
-                <!--<li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>-->
+              <li><a href="javascript:history.back()">Regresar</a></li>
             </ul>       
         </nav>
     </header>
@@ -44,23 +43,19 @@
         <form method="POST">
           {% csrf_token %}
         <label for="fname">Clave del Docente</label>
-        <input disabled type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveDocente" name="claveDocente" value= "{{docente.claveDocente}}">
-        <!--<div class="m1"> 
-            <input required type="text"  placeholder="Search.." name="search">
-            <button class="sb" type="submit"><i class="fa fa-search"></i></button>
-          </div>-->
+        <input type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveDocente" name="claveDocente" value= "{{docente.claveDocente}}">
 
         <label for="pwd">Contraseña</label>
         <input class="contraseña" required type="password" id="password" name="password" value= "{{docente.password}}" required> 
 
         <label for="fname">Nombre</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" id="nombre" maxlength="20" name="nombre" value= "{{docente.nombre}}" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:capitalize"  type="text" id="nombre" maxlength="20" name="nombre" value= "{{docente.nombre}}" required>
         
         <label for="fname">Apellido Paterno</label>
-        <input required  onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" id="apellidoP" maxlength="15" name="apellidoP" value= "{{docente.apellidoP}}" required>
+        <input required  onkeypress="return Solo_Texto(event);" style="text-transform:capitalize"  type="text" id="apellidoP" maxlength="15" name="apellidoP" value= "{{docente.apellidoP}}" required>
 
         <label for="fname">Apellido Materno</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" id="apellidoM" maxlength="15" name="apellidoM" value= "{{docente.apellidoM}}" required>
+        <input required onkeypress="return Solo_Texto(event);" style="text-transform:capitalize"  type="text" id="apellidoM" maxlength="15" name="apellidoM" value= "{{docente.apellidoM}}" required>
 
         <label for="email">Correo Institucional</label>
         <input class="correo" type="email" id="email" name="email" value= "{{docente.email}}" required>

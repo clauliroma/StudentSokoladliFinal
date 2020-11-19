@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Calificación</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
+    <!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    -->
     <link rel="stylesheet" href="{% static 'css/lupitas.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
 </head>
 
 <body>
@@ -18,13 +21,18 @@
         </a>
         <nav>
             <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+                <li><a href="javascript:history.back()">Regresar</a></li>
+                {% if calificacione %}
+                    <li><a href="render_pdf_view" id="pidief">Generar PDF</a></li>
+                {% else %}
+                    <li><a id="pidief">Generar PDF</a></li>
+				{% endif %}
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
-
+   
     <h1>Consultar Calificación</h1>
 
     {% block buscador %}
@@ -48,26 +56,20 @@
                 <th>Clave Materia</th>
                 <th>Calificación</th>
                 <th>Estrategia</th>
-                <!--<th>Acciones</th>-->
                 </tr>
             </thread>
             <tbody>
                    {% for calificacione in calificacione %}
                        <tr> 
-                        <td>{{calificacione.matricula}}</td>
-                        <td>{{calificacione.claveMateria}}</td>
-                        <td>{{calificacione.calif}}</td>
-                        <td>{{calificacione.estrategia}}</td>
-                        <!--<td>
-                            <a class ="nicocholo" href="{% url 'ModificarCalificaciones' calificacione.matricula %}">Modificar</a>
-                            <a class ="nicocholo" href="{% url 'EliminarCalificaciones' calificacione.matricula %}">Eliminar</a>
-                         </td>-->
+                        <td style="text-transform: uppercase">{{calificacione.matricula}}</td>
+                        <td style="text-transform: uppercase">{{calificacione.claveMateria}}</td>
+                        <td style="text-transform: uppercase">{{calificacione.calif}}</td>
+                        <td style="text-transform: uppercase">{{calificacione.estrategia}}</td>
                         </tr>
                    {% endfor %}
-                   {% else %}
-						<h1>No hay registros</h1>
-					{% endif %}
-
+            {% else %}
+				<h1>No hay registros</h1>
+			{% endif %}
             </tbody>
         </table>
     </div>

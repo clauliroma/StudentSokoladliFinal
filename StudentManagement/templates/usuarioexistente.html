@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuario Inválido</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/loginn.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"> 
@@ -19,8 +18,9 @@
         </a>
         <nav>
             <ul>
-                <li><a class="a2" href="Soporte">Soporte</a></li>
-                <li><a  class="a2" href="Contacto">Contacto</a></li>
+                <li><a href="javascript:history.back()">Regresar</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
@@ -30,7 +30,8 @@
             <h1 class="monito"><i class="far fa-user"></i></h1>
             <br><br><br>
             <label class="etiquetaslog"><b>Registro Inválido</b></label> 
-            <br><br><br>
+            <br><br>
+            <h2 style="text-align: center; font-size: 20px;"> Revise que los datos estén correctos o que el registro no exista</h2> <br>
         </div>
     </form>  
 </body>

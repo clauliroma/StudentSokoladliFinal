@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Alumno</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
+    <!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    -->
     <link rel="stylesheet" href="{% static 'css/stylesTabla.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -16,9 +17,7 @@
           <img src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
         <nav>
             <ul>
-              <!--<li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>-->
+              <li><a href="javascript:history.back()">Regresar</a></li>
             </ul>       
         </nav>
     </header>
@@ -28,50 +27,11 @@
     <div>
       <form method="post">
         {% csrf_token %}
-        <label for="lname">¿Seguro de eliminar a {{alumno.nombre}} {{alumno.apellidoP}} {{alumno.apellidoM}}?</label>
+        <label for="lname">¿Seguro de eliminar a </label> <label style="text-transform: capitalize">{{alumno.nombre}} {{alumno.apellidoP}} {{alumno.apellidoM}}?</label>
         <br>
-				<!--<button type="button" class="btlogenviar" type="submit">Confirmar</button>
-        <label for="fname">Matricula</label>
-        <div class="m1"> 
-          <input type="text"  placeholder="Search.." name="search">
-          <button class="sb" type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        
-        <label for="fname">Contraseña</label>
-        <input required type="password" id="fname" name="firstname" class="contraseña">
-    
-        <label for="lname">Nombre</label>
-        <input required type="text" id="lname" name="lastname" >
-
-        <label for="lname">Apellido paterno</label>
-        <input required type="text" id="lname" name="lastname" >
-
-        <label for="lname">Apellido materno</label>
-        <input required type="text" id="lname" name="lastname" >
-    
-        <label for="country">Grado</label>
-        <select id="country" name="country" >
-          <option value="primero">1º</option>
-          <option value="segundo">2º</option>
-          <option value="tercero">3º</option>
-          <option value="cuarto">4º</option>
-          <option value="quinto">5º</option>
-          <option value="sexto">6º</option>
-        </select>
-
-        <label for="lname">Grupo</label>
-        <input required type="text" id="lname" name="lastname" >
-        <label for="lname">Nombre del padre de familia</label>
-        <input required type="text" id="lname" name="lastname" >-->
-      
         <input required type="submit" value="Eliminar">
 
-        
       </form>
     </div>
-
-    
-
- 
 </body>
 </html>

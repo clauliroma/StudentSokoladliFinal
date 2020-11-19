@@ -5,23 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Grupo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}">
 
+    <!--Solo texto-->
     <script type="text/javascript">
       function Solo_Texto(e) {
         var code;
         if (!e) var e = window.event;
         if (e.keyCode) code = e.keyCode;
         else if (e.which) code = e.which;
-        var character = String.fromCharCode(code);
-        var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+            var character = String.fromCharCode(code);
+            var AllowRegex  = /^[\ba-zA-Z\s-]$/;
         if (AllowRegex.test(character)) return true;     
-      return false; 
+        return false; 
       }
     </script>
-    
 </head>
 
 <body>
@@ -31,46 +29,34 @@
         </a>
         <nav>
             <ul>
-              <li><a href="Menu">Inicio</a></li>
+              <li><a href="javascript:history.back()">Regresar</a></li>
               <li><a href="Soporte">Soporte</a></li>
               <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
-
     <h1>Agregar Grupo</h1>
-
     <div>
       <form method="POST">
         {% csrf_token %}
-        <label for="fname">Clave del Grupo</label>
-        <input required type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(minLength, this.maxLength);" id="claveGrupo" name="claveGrupo" required>
-    
-        <!--<label for="lname">Clave de la Materia</label>
-        <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveMateria" name="claveMateria" required>
+          <label for="fname">Clave del Grupo</label>
+          <input required type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(minLength, this.maxLength);" id="claveGrupo" name="claveGrupo" required>
 
-        <label for="lname">Clave del Docente</label>
-        <input required type="number" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="claveDocente" name="claveDocente" required>
-        -->
-        <label for="grado">Grado</label>
-        <select id="grado" name="grado" >
-          <option value="1">1º</option>
-          <option value="2">2º</option>
-          <option value="3">3º</option>
-          <option value="4">4º</option>
-          <option value="5">5º</option>
-          <option value="6">6º</option>
-        </select>
+          <label for="grado">Grado</label>
+          <select id="grado" name="grado" >
+            <option value="1">1º</option>
+            <option value="2">2º</option>
+            <option value="3">3º</option>
+            <option value="4">4º</option>
+            <option value="5">5º</option>
+            <option value="6">6º</option>
+          </select>
 
-        <label for="lname">Grupo</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlenght="1" id="grupo" name="grupo" required>
-    
-        <input required type="submit" value="Submit">
+          <label for="lname">Grupo</label>
+          <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlenght="1" id="grupo" name="grupo" required>
+      
+          <input required type="submit" value="Submit">
       </form>
-    </div>
-
-    
-
- 
+    </div> 
 </body>
 </html>

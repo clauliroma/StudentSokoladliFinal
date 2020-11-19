@@ -13,12 +13,10 @@ html{
    list-style: none;
    padding: 10px;
    font-size: 30px;
-   font-family: lato;
  }
  nav{
   float: right;
   margin-right: 20px;
-  font-family: lato;
  }
  a{
   text-decoration: none;
@@ -57,17 +55,6 @@ textarea {
   font-size: 15px;
 }
 
-input[type=number], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: lato;
-  font-size: 15px;
-}
 
 input[type=text], select {
   width: 100%;
@@ -106,6 +93,19 @@ input[type=text], select {
   font-size: 15px;
 }
 
+img.icon2{
+    display: block;
+    margin:-40px;
+    /*background-color: rgba(255,255,255,.15);*/
+  
+    width:50px;
+    padding:10px;
+  
+    -webkit-border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
+    -webkit-transition:box-shadow .4s;
+  }
+  
 .calif {
   width: 100%;
   padding: 12px 20px;
@@ -118,18 +118,6 @@ input[type=text], select {
   font-size: 15px;
 }
 
-img.icon2{
-	display: block;
-	margin:-5px;
-	/*background-color: rgba(255,255,255,.15);*/
-
-	width:40px;
-	padding:5px;
-
-	-webkit-border-radius: 50%;
-	-webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
-	-webkit-transition:box-shadow .4s;
-}
 input[type=submit] {
   width: 100%;
   background-color: #4CAF50;
@@ -149,7 +137,7 @@ input[type=submit]:hover {
 
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 20px;
   width: 40%;
   margin: auto;
@@ -157,7 +145,6 @@ div {
 }
 
 label {
-
   font-size: 20px;
   font-family: lato;  
 }
@@ -181,35 +168,78 @@ label {
  color:  #F05F45;
  border-color: #F05F45;  
 }
-
+/*Table*/
 .tab{
   margin: auto;
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  width: 120%;
 }
 
 th, td {
-  text-align: left;
-  padding: 8px;
+  text-align: center;
+  padding: 4px;
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
 
 td{
   font-family: lato;
-  font-size: 20px;
+  font-size: 18px;
 }
 th {
   background-color: #4CAF50;
   color: white;
   font-family: lato;
-  font-size: 20px;
+  font-size: 18px;
 }
 
+.nicocholo:hover{
+  color: #F05F45;
+}
 
+.divbusqueda{
+    padding: 0;
+    display: flex;
+    width: 80%;
+    background-color: white;
+   }
+   .tamaño{
+     width: 40%;
+    margin: auto;
+   
+   }
+   .lupa{
+       margin: 10px;
+       margin-left: 10px;
+       font-size: 25px;
+       width: 15%;
+       background-color: white;
+       border-radius: 4px;
+       margin-top: 10px;
+     }
+   .lupa:hover{
+      color:  #F05F45;
+      border-color: #F05F45;  
+   }
 
-
-
+   .sokologo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+  }
+  .soporte{
+    background-color: white;
+    width: 100%;
+   }
+   h3{
+    text-align: center;
+    font-size: 40px;
+    font-family: lato ;
+    font-weight: 300;
+    color: black;
+    text-decoration: none;
+   }

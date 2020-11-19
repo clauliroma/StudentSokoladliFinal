@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Materias</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/lupitas.css' %}"/>
 </head>
 
@@ -17,9 +18,9 @@
         </a>
         <nav>
             <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+                <li><a href="javascript:history.back()">Regresar</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
@@ -54,7 +55,7 @@
                    {% for materia in materia %}
                        <tr> 
                         <td>{{materia.claveMateria}}</td>
-                        <td>{{materia.nombreMateria}}</td>
+                        <td style="text-transform:capitalize" >{{materia.nombreMateria}}</td>
                         <td>
                             <a class ="nicocholo" href="{% url 'ModificarMaterias' materia.claveMateria %}">Modificar</a>
                          </td>

@@ -3,9 +3,11 @@ from django.urls import path
 from django.conf import settings
 from django.contrib.auth.views import logout_then_login
 from django.conf.urls.static import static
-from .views import repetido,Eliminar_Grupos,Modificar_Grupos,Eliminar_Materias,Modificar_Materias,Eliminar_Calificaciones,Modificar_Calificaciones,Modificar_Usuario,Eliminar_Usuario,Eliminar_Alumno,Modificar_Alumno,VerPerfil,Logout,invalido,Soporte, Contacto, ConsultarMaterias,ConsultarGrupos,ConsultarCalificaciones,ConsultarUsuario,ConsultarAlumno,AgregarGrupos, ModificarGrupos, EliminarGrupos, SubAlumno, SubCalificaciones, SubMaterias, SubMaestro, SubGrupos , Login, Menu, AgregarAlumno, AgregarUsuario, AgregarCalificaciones, AgregarMaterias,ModificarAlumno,ModificarUsuario,ModificarCalificaciones,ModificarMaterias,EliminarAlumno, EliminarUsuario, EliminarMaterias, EliminarCalificaciones
+from .views import render_pdf_view,repetido,Eliminar_Grupos,Modificar_Grupos,Eliminar_Materias,Modificar_Materias,Eliminar_Calificaciones,Modificar_Calificaciones,Modificar_Usuario,Eliminar_Usuario,Eliminar_Alumno,Modificar_Alumno,VerPerfil,Logout,invalido,Soporte, Contacto, ConsultarMaterias,ConsultarGrupos,ConsultarCalificaciones,ConsultarUsuario,ConsultarAlumno,AgregarGrupos, ModificarGrupos, EliminarGrupos, SubAlumno, SubCalificaciones, SubMaterias, SubMaestro, SubGrupos , Login, Menu, AgregarAlumno, AgregarUsuario, AgregarCalificaciones, AgregarMaterias,ModificarAlumno,ModificarUsuario,ModificarCalificaciones,ModificarMaterias,EliminarAlumno, EliminarUsuario, EliminarMaterias, EliminarCalificaciones
 
 urlpatterns = [
+    #PDF
+    path('render_pdf_view',render_pdf_view,name='render_pdf_view'),
     #Login
     path('Login',Login,name='Login'),
     path('Logout',Logout,name='Logout'),
@@ -45,8 +47,8 @@ urlpatterns = [
     path('AgregarCalificaciones',AgregarCalificaciones,name='AgregarCalificaciones'),
     path('ModificarCalificaciones',Modificar_Calificaciones,name='Modificar_Calificaciones'),
     path('EliminarCalificaciones',Eliminar_Calificaciones,name='Eliminar_Calificaciones'),
-    path(r'^updatecalificaciones/(?P<matricula>\d+)/',ModificarCalificaciones,name='ModificarCalificaciones'),
-    path(r'^deletecalificaciones/(?P<matricula>\d+)/',EliminarCalificaciones,name='EliminarCalificaciones'),
+    path(r'^updatecalificaciones/(?P<incremento>\d+)/',ModificarCalificaciones,name='ModificarCalificaciones'),
+    path(r'^deletecalificaciones/(?P<incremento>\d+)/',EliminarCalificaciones,name='EliminarCalificaciones'),
     path('ConsultarCalificaciones',ConsultarCalificaciones,name='ConsultarCalificaciones'),
 
     #Materias

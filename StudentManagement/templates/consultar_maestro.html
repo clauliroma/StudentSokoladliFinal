@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultar Docentes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
+    <!--<link rel="stylesheet" href="css/normalize.css">
+          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/lupitas2.css' %}"/>
 </head>
@@ -18,9 +19,9 @@
         </a>
         <nav>
             <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+                <li><a href="javascript:history.back()">Regresar</a></li>
+              <li><a href="Soporte">Soporte</a></li>
+              <li><a href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
@@ -52,22 +53,17 @@
                 <th>Apellido Materno</th>
                 <th>Correo</th>
                 <th>CURP</th>
-                <!--<th>Acciones</th>-->
                 </tr>
             </thread>
             <tbody>
                    {% for docente in docente %}
                        <tr> 
                         <td>{{docente.claveDocente}}</td>
-                        <td>{{docente.nombre}}</td>
-                        <td>{{docente.apellidoP}}</td>
-                        <td>{{docente.apellidoM}}</td>
+                        <td style="text-transform: capitalize">{{docente.nombre}}</td>
+                        <td style="text-transform: capitalize">{{docente.apellidoP}}</td>
+                        <td style="text-transform: capitalize">{{docente.apellidoM}}</td>
                         <td>{{docente.email}}</td>
-                        <td>{{docente.curp}}</td>
-                        <!--<td>
-                            <a class ="nicocholo" href="{% url 'ModificarUsuario' docente.claveDocente %}">Modificar</a>
-                            <a class ="nicocholo" href="{% url 'EliminarUsuario' docente.claveDocente %}">Eliminar</a>
-                         </td>-->
+                        <td style="text-transform: uppercase">{{docente.curp}}</td>
                         </tr>
                    {% endfor %}
                    {% else %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reporte de Calificación</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/PDF.css'%}"  />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+        <style >
+                td{text-align: center; font-family: 'Times New Roman'; padding: 20%;}
+                .pdf-frame-border{background-color: #F15F46;}
+                div{margin: auto;}
+                header{background-color: #F15F46;}
+                h1{text-align: center;}
+                .body{font-family: DejaMono; src: url(font/DejaVuSansMono.ttf);}
+                img{width: 200px; display: block; margin-left: auto; margin-right: auto;}
+                table{width: 100%;}
+                footer{background-color: ; padding: 0.5%;}
+                h3{text-align: center;}
+        </style>
+    </head>    
+    
+<body style="font-family: 'Times New Roman'">
+    
+    <div style="background-color:  lightgrey; padding: 1%; height: 3px">
+        <h3 style="padding: 50%; text-align: center; font-family: 'Times New Roman'; font-size: 25px;">Student Management</h3>
+        <img style="width: 200px; display: block; margin-left: auto; margin-right: auto;" src="{% static 'imagenes/sm.jpeg'%}" alt="Logotipo de sokoladli">
+    </div>
+    <h1 style="text-align: center; font-family: 'Times New Roman'; font-size: 20px ;">Reporte de Calificaciones</h1>
+        {% block contenido %}
+        <div style="margin: auto;">
+            <table style="width: 100%; font-size: 15px; border: -1px solid slategray;"> 
+                <thread>
+                    <tr style="padding: 10%; background-color: #f2f2f2">
+                        <th>Matricula</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Materia</th>
+                        <th>Calificacion</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for reportcalif in reportcalif %}
+                        <tr> 
+                            <td>{{reportcalif.matricula}}</td>
+                            <td style="text-transform:capitalize">{{reportcalif.nombre}}</td>
+                            <td style="text-transform:capitalize">{{reportcalif.apellidoP}}</td>
+                            <td style="text-transform:capitalize">{{reportcalif.apellidoM}}</td>
+                            <td style="text-transform:capitalize">{{reportcalif.claveMateria}}</td>
+                            <td>{{reportcalif.calif}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br><br><br><br>
+        </div>
+        {% endblock contenido %}
+        <footer style="background-color:  lightgrey; padding: 20%;">
+            <h3 style="text-align: center; font-size: 15px">-------------------------------------------------------------------------------------------------------------------------------------------<br>
+                Escuela Primaria Urbano 1117 Rafael Ramí­rez<br>
+                Gardenia #199 Fraccionamiento Jardínes de San Sebastián, Tlajomulco de Zúñiga<br>
+                -------------------------------------------------------------------------------------------------------------------------------------------</h3>
+        </footer>
+</body>
+</html>

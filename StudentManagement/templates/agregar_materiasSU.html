@@ -5,23 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Materias</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="{% static 'css/stylesmo.css' %}"/>
-
+    <link rel="stylesheet" href="{% static 'css/stylesmo2.css' %}"/>
+    
+    <!--Solo texto-->
     <script type="text/javascript">
-        function Solo_Texto(e) {
-          var code;
-          if (!e) var e = window.event;
-          if (e.keyCode) code = e.keyCode;
-          else if (e.which) code = e.which;
-          var character = String.fromCharCode(code);
-          var AllowRegex  = /^[\ba-zA-Z\s-]$/;
-          if (AllowRegex.test(character)) return true;     
+      function Solo_Texto(e) {
+        var code;
+        if (!e) var e = window.event;
+        if (e.keyCode) code = e.keyCode;
+        else if (e.which) code = e.which;
+            var character = String.fromCharCode(code);
+            var AllowRegex  = /^[\ba-zA-Z\s-]$/;
+        if (AllowRegex.test(character)) return true;     
         return false; 
-        }
-      </script>
-
+      }
+    </script>
 </head>
 
 <body>
@@ -31,9 +29,9 @@
         </a>
         <nav>
             <ul>
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Soporte">Soporte</a></li>
-                <li><a href="Contacto">Contacto</a></li>
+              <li><a class="a2" href="javascript:history.back()">Regresar</a></li>
+              <li><a  class="a2"href="Soporte">Soporte</a></li>
+              <li><a  class="a2" href="Contacto">Contacto</a></li>
             </ul>       
         </nav>
     </header>
@@ -41,11 +39,11 @@
     <div>
         <form method="POST">
           {% csrf_token %}
-        <label for="fname">Clave de la materia</label>
-        <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"id="claveMateria" name="claveMateria" required >
-        <label for="fname">Nombre de la materia</label>
-        <input required onkeypress="return Solo_Texto(event);" style="text-transform:uppercase" type="text" maxlength="20" id="nombreMateria" name="nombreMateria" required>
-        <input required type="submit" value="Submit">
+            <label for="fname">Clave de la materia</label>
+            <input required type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"id="claveMateria" name="claveMateria" required >
+            <label for="fname">Nombre de la materia</label>
+            <input required onkeypress="return Solo_Texto(event);" style="text-transform:capitalize" type="text" maxlength="20" id="nombreMateria" name="nombreMateria" required>
+            <input required type="submit" value="Submit">
       </form>
     </div>
 </body>
